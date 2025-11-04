@@ -144,27 +144,6 @@ notification_service.send(correlation_id=correlation_id)
 
 **Problem**: External APIs require specific ID formats.
 
-```python
-class PaymentGateway:
-    def __init__(self):
-        self.generator = TimeshardGenerator.get_instance()
-    
-    def create_transaction(self, provider: str):
-        # Stripe requires: "pi_" prefix
-        if provider == "stripe":
-            return self.generator.next_id_with_prefix("pi_")
-        
-        # Legacy bank requires: "XXXX-TXN-XXXXXXXX"
-        elif provider == "legacy_bank":
-            return self.generator.next_id_with_prefix_at("-TXN-", 4)
-        
-        # PayPal requires: "PAYID-" prefix
-        elif provider == "paypal":
-            return self.generator.next_id_with_prefix("PAYID-")
-        
-        # All IDs still globally unique and parseable
-```
-
 **Real impact**: One ID generator handles all provider formats instead of maintaining separate logic.
 
 ### 5. Regulatory & Compliance Requirements

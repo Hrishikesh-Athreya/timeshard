@@ -140,12 +140,16 @@ p99.9: 1.67 µs
 ---
 
 ## Installation
-
 ```bash
-pip install timeshard
+pip install git+https://github.com/yourusername/timeshard.git
 ```
 
----
+Or clone and install locally:
+```bash
+git clone https://github.com/yourusername/timeshard.git
+cd timeshard
+pip install -e .
+```
 
 ## Usage
 
